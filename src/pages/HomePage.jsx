@@ -57,6 +57,7 @@ const HomePage = () => {
           />
         </Box>
       </Container>
+      {/* <AddPostForm /> */}
     </>
   );
 };
