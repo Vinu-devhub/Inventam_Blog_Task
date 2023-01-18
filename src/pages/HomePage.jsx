@@ -1,9 +1,8 @@
 import { Box, CircularProgress, Container, Typography } from '@mui/material';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import BlogPosts from '../components/BlogPosts';
-import {
-  default as PaginationRounded,
-} from '../components/Pagination';
+import { default as PaginationRounded } from '../components/Pagination';
 
 const HomePage = () => {
   const [postsData, setPostsData] = useState([]);
@@ -12,13 +11,16 @@ const HomePage = () => {
   const [postsPerPage] = useState(10);
 
   useEffect(() => {
-    setLoading(true);
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then((response) => response.json())
-      .then((data) => {
-        setPostsData(data);
-        setLoading(false);
-      });
+    const fetchPosts = async () => {
+      setLoading(true);
+      const response = await axios.get(
+        'https://jsonplaceholder.typicode.com/posts',
+      );
+      setPostsData(response.data);
+      setLoading(false);
+    };
+
+    fetchPosts();
   }, []);
 
   const indexOfLastPost = currentPage * postsPerPage;

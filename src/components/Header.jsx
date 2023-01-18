@@ -1,16 +1,21 @@
-import { AppBar, Box, Typography } from '@mui/material';
-import React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import * as React from 'react';
 
-const Header = () => {
+export default function ButtonAppBar() {
   return (
-    <Box>
-      <AppBar position='static' sx={{ p: 1, pl: 5 }}>
-        <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-          News
-        </Typography>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position='static'>
+        <Toolbar>
+          <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
+            Header
+          </Typography>
+          <Button color='inherit'>Create new Blog</Button>
+        </Toolbar>
       </AppBar>
     </Box>
   );
-};
-
-export default Header;
+}

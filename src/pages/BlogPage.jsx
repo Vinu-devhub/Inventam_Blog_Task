@@ -1,7 +1,14 @@
-import { Box, Container, Typography } from '@mui/material';
-import React from 'react';
+import { Box, Button, Container, Paper, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import Comments from '../components/Comments';
 
 const BlogPage = () => {
+  const location = useLocation();
+  const [showComments, setShowComments] = useState(false);
+
+  const { id, title, body } = location.state;
+
   return (
     <>
       <Container sx={{ minHeight: '100vh' }}>
@@ -12,13 +19,11 @@ const BlogPage = () => {
           }}
         >
           <Typography variant='h4' sx={{ my: 2, pt: 8 }}>
-            Blog Home Page
+            {title}
           </Typography>
           <Box>
             <Typography sx={{ py: 2 }} textAlign='left'>
-              voluptatem cumque tenetur consequatur expedita ipsum nemo quia
-              explicabo\naut eum minima consequatur\ntempore cumque quae est
-              et\net in consequuntur voluptatem voluptates aut
+              {body}
             </Typography>
             <Typography>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -39,6 +44,19 @@ const BlogPage = () => {
             </Typography>
           </Box>
         </Box>
+
+        <Paper elevation={3} sx={{ mt: 5, py: 2, textAlign: 'center' }}>
+          <Button
+            onClick={() => {
+              setShowComments(!showComments);
+            }}
+            variant='contained'
+          >
+            Show Comments
+          </Button>
+        </Paper>
+
+        {showComments && <Comments postId={id} />}
       </Container>
     </>
   );

@@ -1,21 +1,11 @@
-import {
-  Box,
-  Button,
-  CardActionArea,
-  CardActions,
-  Link,
-  Paper,
-} from '@mui/material';
+import { Box, Button, CardActionArea, CardActions, Paper } from '@mui/material';
 import CardContent from '@mui/material/CardContent';
 import { grey } from '@mui/material/colors';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
-import { useSelector } from 'react-redux';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function MultiActionAreaCard({ postsData }) {
-  // const posts = useSelector((state) => state.post);
-
   return (
     <>
       <div>
@@ -28,15 +18,13 @@ export default function MultiActionAreaCard({ postsData }) {
                   width: '75%',
                   my: 4,
                   p: 2,
+                  textDecoration: 'none',
                 }}
               >
                 <Link
-                  to={{
-                    pathname: `/posts/${post.id}`,
-                    query: post,
-                  }}
-                  component={RouterLink}
-                  underline='none'
+                  to={`/posts/${post.id}`}
+                  state={post}
+                  style={{ textDecoration: 'none' }}
                 >
                   <CardActionArea sx={{ bgcolor: grey[50] }}>
                     <CardContent>
